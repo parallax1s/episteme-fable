@@ -1,0 +1,120 @@
+{
+  "claims": [
+    {
+      "text": "The author ran a 40-person engineering organization through both an in-office regime and a fully remote regime.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Remote work is bad for junior developers.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "the common claim the author keeps encountering (unnamed critics of remote work)"
+    },
+    {
+      "text": "The author's junior developer cohort had a time-to-first-production-commit of 24 days during the in-office era.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The author's junior developer cohort had a time-to-first-production-commit of 26 days after going remote.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The difference between the junior cohort's 24-day in-office time-to-first-production-commit and its 26-day remote time-to-first-production-commit is statistically indistinguishable given the small sample.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Retention of the author's junior developers at the two-year mark rose after going remote, from 61% to 78%.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The rise in the author's junior developer two-year retention under remote work was mostly because the organization could hire people who live where housing is affordable.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Junior developers learn by overhearing senior conversations in the office.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "the standard 'osmosis' counterargument to remote work"
+    },
+    {
+      "text": "Nobody who makes the osmosis argument that juniors learn by overhearing senior conversations ever measures that effect.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Learning by osmosis in the office most likely benefited mainly the loudest office cliques.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The author's organization introduced mandatory written design docs for every feature after going remote.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The author's organization introduced a rule that all debugging sessions happen on a recorded call anyone can join.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Mandatory written design docs and recorded, open debugging calls more than replaced the hallway learning the author's organization lost by going remote.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A junior developer who watches ten recorded debugging sessions learns more than a junior who eavesdrops on senior conversations for a month.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Fully remote work is probably worse for the bottom decile of self-starters, the junior developers who need someone to notice when they are stuck.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If an organization's hiring cannot screen for autonomy, then hybrid work with two anchor days is likely the safer default.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The blanket claim that remote work kills junior development is a management failure dressed up as a law of nature.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "The blanket claim that remote work kills junior development is false; poor junior outcomes under remote work reflect a management failure, not an inherent law of nature."
+    },
+    {
+      "text": "The author's own data from running a 40-person engineering organization through both regimes shows that going fully remote did not harm junior developers: their time-to-first-production-commit was statistically unchanged and their two-year retention actually rose."
+    },
+    {
+      "text": "With deliberate structure such as mandatory written design docs and recorded, openly joinable debugging calls, a remote organization can more than replace the informal 'osmosis' learning juniors lose from the office."
+    },
+    {
+      "text": "Fully remote work is worse mainly for the least self-directed juniors, so an organization whose hiring cannot screen for autonomy should default to hybrid work with two anchor days."
+    }
+  ]
+}

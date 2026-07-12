@@ -1,0 +1,99 @@
+{
+  "claims": [
+    {
+      "text": "On September 14, 2015 at 09:50:45 UTC, the two detectors of the Laser Interferometer Gravitational-Wave Observatory simultaneously observed a transient gravitational-wave signal.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The transient gravitational-wave signal observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 sweeps upwards in frequency from 35 to 250 Hz.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The transient gravitational-wave signal observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 had a peak gravitational-wave strain of 1.0e-21.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The transient gravitational-wave signal observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 matches the waveform predicted by general relativity for the inspiral and merger of a pair of black holes and the ringdown of the resulting single black hole.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The transient gravitational-wave signal observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 was observed with a matched-filter signal-to-noise ratio of 24.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The transient gravitational-wave signal observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 has a false alarm rate estimated to be less than 1 event per 203000 years, equivalent to a significance greater than 5.1 sigma.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The source of the transient gravitational-wave signal observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 lies at a luminosity distance of 410 Mpc, corresponding to a redshift of 0.09.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "In the source frame, the two black holes whose merger produced the September 14, 2015 gravitational-wave signal detected by the Laser Interferometer Gravitational-Wave Observatory had initial masses of 36 and 29 solar masses.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "In the source frame, the final black hole produced by the merger observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015 has a mass of 62 solar masses.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "In the binary black hole merger observed by the Laser Interferometer Gravitational-Wave Observatory on September 14, 2015, 3.0 solar masses were radiated in gravitational waves.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "All uncertainties reported for the September 14, 2015 gravitational-wave observation by the Laser Interferometer Gravitational-Wave Observatory define 90% credible intervals.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The observations of the September 14, 2015 gravitational-wave signal by the Laser Interferometer Gravitational-Wave Observatory demonstrate the existence of binary stellar-mass black hole systems.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The detection of the September 14, 2015 gravitational-wave signal by the Laser Interferometer Gravitational-Wave Observatory is the first direct detection of gravitational waves.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The September 14, 2015 gravitational-wave observation by the Laser Interferometer Gravitational-Wave Observatory is the first observation of a binary black hole merger.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "The detection of the September 14, 2015 gravitational-wave signal by the Laser Interferometer Gravitational-Wave Observatory is the first direct detection of gravitational waves."
+    },
+    {
+      "text": "The September 14, 2015 gravitational-wave signal detected by the Laser Interferometer Gravitational-Wave Observatory is the first observation of a binary black hole merger, matching the general-relativity waveform for the inspiral, merger, and ringdown of a pair of black holes."
+    },
+    {
+      "text": "The September 14, 2015 gravitational-wave observation by the Laser Interferometer Gravitational-Wave Observatory demonstrates the existence of binary stellar-mass black hole systems."
+    }
+  ]
+}

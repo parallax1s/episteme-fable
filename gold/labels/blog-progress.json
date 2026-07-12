@@ -1,0 +1,141 @@
+{
+  "claims": [
+    {
+      "text": "Progress keeps being underestimated.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "People keep predicting that progress will slow down.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Human brains really do not want to predict change.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Human brains are wired by millions of years of primate evolution to resist predicting change.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Progress will keep coming.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Recursive self-improvement (RSI) is here.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Nothing will stop recursive self-improvement (RSI).",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Compute keeps increasing.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Algorithms keep getting more efficient.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Memory is being solved.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "In-context learning is sample efficient.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Anthropic will potentially be about 60% of the economy.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The current timeline might be one of the best timelines that we could have planned for.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "People have in fact planned for the current timeline.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The best people go to Anthropic.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The best people ask themselves where their talent and work will most increase the likelihood of a good AI future.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Anthropic hires based on who is really committed to ensuring a good AI future.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If governance holds, the current setup is close to the best setup we can ask for.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Malicious actors are repelled.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The path to a good AI future is visible.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Leopold"
+    },
+    {
+      "text": "The priority of a question q equals the sum over all i of the weight w_i multiplied by the score s_i(q).",
+      "kind": "definition",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "Progress keeps being underestimated."
+    },
+    {
+      "text": "Recursive self-improvement is already underway and continued AI progress is unstoppable."
+    },
+    {
+      "text": "Anthropic is close to the best possible setup for ensuring a good AI future, which is why the best people work there."
+    }
+  ]
+}

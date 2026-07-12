@@ -1,0 +1,135 @@
+{
+  "claims": [
+    {
+      "text": "A single untrained worker making pins alone might finish twenty pins in a day, perhaps only one.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Ten workers dividing pin-making into distinct operations can produce upwards of forty-eight thousand pins in a day.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "In a divided pin-making operation, one worker draws the wire, another straightens it, and a third cuts it.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The multiplication of pin output from the division of labor is a factor of hundreds, not marginal.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The multiplication of pin output from the division of labor comes from organization alone, with no new technology.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Three mechanisms drive the productivity gain from the division of labor.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A worker's dexterity increases when their task narrows.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Under the division of labor, no time is lost switching between tools and stations.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Narrowing attention onto a single operation makes workers far more likely to notice a small improvement or labor-saving device that a generalist would never see.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The division of labor is limited by the extent of the market.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A porter cannot specialize in a village because there is not enough carrying to be done there.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Specialization deepens along coasts and navigable rivers first.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Isolated regions stay poor because small markets cannot absorb specialized output.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Isolated regions are poor because their people differ from those elsewhere.",
+      "kind": "assertion",
+      "stance": "refuted",
+      "stance_source": null
+    },
+    {
+      "text": "The division of labor, the same force that multiplies production, also deforms the producer.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A person whose whole life is spent performing a few simple operations has no occasion to exercise judgment.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A person whose whole life is spent performing a few simple operations generally becomes as narrow as it is possible for a human being to become.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The pin factory is not an unmixed blessing but a bargain.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The enormous material gain from the pin factory is purchased with the mental range of the workers.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Public education exists to repay the cost that the division of labor imposes on the workers' mental range.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "The pin factory shows that the division of labor is not an unmixed blessing but a bargain: enormous material gain purchased with the workers' mental range."
+    },
+    {
+      "text": "The division of labor multiplies output by a factor of hundreds through organization alone, with no new technology."
+    },
+    {
+      "text": "The division of labor is limited by the extent of the market, so specialization deepens where markets are large and isolated regions with small markets stay poor."
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "claims": [
+    {
+      "text": "Regulation is to blame for the explosion in nuclear construction costs.",
+      "kind": "assertion",
+      "stance": "refuted",
+      "stance_source": "the pro-nuclear crowd"
+    },
+    {
+      "text": "Every time nuclear power comes up, the actual construction cost data gets ignored.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "French nuclear reactors built in the 1970s cost around 1,000 dollars per kilowatt in today's money.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The two nuclear reactors completed in Georgia in 2023-2024 cost roughly 15,000 dollars per kilowatt.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "South Korea built nuclear reactors through the 2010s at about 2,500 dollars per kilowatt.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "South Korea has nuclear regulation comparably strict to that of the United States.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The cost gap between 1970s French reactors and the 2023-2024 Georgia reactors is not a regulatory premium.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The real variable explaining differences in nuclear reactor construction costs is continuous build programs.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "South Korea built the same nuclear reactor design over and over with the same crews and the same supply chain.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The United States built no new nuclear reactors for thirty years.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "After thirty years of building no reactors, the United States attempted a first-of-a-kind nuclear reactor design.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The US workforce that built the recent nuclear reactors had never poured nuclear-grade concrete.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Something like 60-70% of the US nuclear cost gap is attributable to lost workforce experience and supply-chain atrophy, not to safety rules.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "estimates"
+    },
+    {
+      "text": "The pro-nuclear crowd's favorite fix for high nuclear costs is slashing the regulator.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Slashing the nuclear regulator would recover at best maybe a third of the US nuclear cost gap.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Every construction pause that the anti-nuclear crowd wins makes the next nuclear reactor more expensive.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The anti-nuclear crowd cites the rising cost of nuclear reactors as proof that nuclear power is uneconomic.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The only exit from the nuclear cost spiral is to pick one reactor design and commit to a ten-unit build program.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The first two units of a committed ten-unit nuclear build program will be expensive.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A country that cannot commit to ten nuclear units should probably not build any nuclear reactors at all.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "The explosion in nuclear construction costs is driven mainly by the loss of continuous build programs -- lost workforce experience and supply-chain atrophy -- not by regulation."
+    },
+    {
+      "text": "The only way out of the nuclear cost spiral is to pick a single reactor design and commit to a ten-unit build program, accepting that the first two units will be expensive."
+    },
+    {
+      "text": "Slashing the nuclear regulator would recover at best about a third of the US nuclear cost gap, so deregulation alone cannot fix nuclear economics."
+    },
+    {
+      "text": "A country that cannot commit to a ten-unit nuclear build program should probably not build any reactors at all."
+    }
+  ]
+}

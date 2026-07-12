@@ -1,0 +1,153 @@
+{
+  "claims": [
+    {
+      "text": "All reasoning about matters of fact rests on the relation of cause and effect.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Our knowledge of the relation of cause and effect rests entirely on experience.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Nothing in the taste or color of bread reveals that the bread will nourish.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "We expect bread to nourish because it has always nourished before.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The expectation that bread will nourish is habit, not insight.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Why should past experience bind the future?",
+      "kind": "question",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Every inductive inference presupposes that nature is uniform.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "That nature is uniform means that the future will resemble the past.",
+      "kind": "definition",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The principle that nature is uniform cannot be demonstrated by logic.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The denial of the principle that nature is uniform involves no contradiction.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A world in which bread stops nourishing tomorrow is perfectly conceivable.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The principle that nature is uniform cannot be established by experience.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Any appeal to experience assumes the very uniformity of nature that is in question.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Arguing that induction has worked so far and will therefore keep working is induction defending itself in a circle.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "It does not follow from the circularity of induction's justification that we should stop trusting induction.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "We could not stop trusting induction even if we tried.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Custom compels the inductive inference.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Custom is a better guide to life than any argument.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The confidence of science is practical rather than demonstrative.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Every law of nature we assert carries an unstated premise that no argument can secure.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The proper response to the fact that every law of nature rests on an unsecurable premise is not paralysis but a permanent discount on certainty.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The skeptic's point about induction is not that the sun might not rise tomorrow.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Our reasons for expecting the sun to rise tomorrow are weaker in kind than we like to pretend.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "Induction cannot be non-circularly justified, because the uniformity of nature that every inductive inference presupposes can be established neither by logic nor by experience."
+    },
+    {
+      "text": "The proper response to induction's unjustifiability is not to abandon it but to treat scientific confidence as practical rather than demonstrative, applying a permanent discount on certainty."
+    },
+    {
+      "text": "The skeptic's real point is not that inductive predictions such as the sun rising tomorrow might fail, but that our reasons for expecting them are weaker in kind than we like to pretend."
+    }
+  ]
+}

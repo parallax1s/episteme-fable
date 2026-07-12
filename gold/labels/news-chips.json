@@ -1,0 +1,111 @@
+{
+  "claims": [
+    {
+      "text": "The federal semiconductor subsidy program has disbursed 38 billion dollars since 2023.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "a report released Tuesday by the Government Accountability Office"
+    },
+    {
+      "text": "Only two of the seven planned fabrication plants in the federal semiconductor subsidy program have begun production.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "a report released Tuesday by the Government Accountability Office"
+    },
+    {
+      "text": "The Government Accountability Office released a report on the federal semiconductor subsidy program on Tuesday.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The federal semiconductor subsidy program has fallen short of its fabrication-plant targets.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Workforce shortages are the primary cause of the delays affecting the federal semiconductor subsidy program's fabrication plants.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "the Government Accountability Office report"
+    },
+    {
+      "text": "The semiconductor industry needs an estimated 67,000 more skilled technicians than the labor market currently supplies.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "the Government Accountability Office report"
+    },
+    {
+      "text": "Commerce Department officials disputed the framing of the Government Accountability Office report on the federal semiconductor subsidy program.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The timeline for the federal semiconductor subsidy program was always a decade, not five years.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Deputy Secretary Alana Ortiz of the Commerce Department"
+    },
+    {
+      "text": "The federal semiconductor subsidy program is ahead of every comparable industrial effort in the country's history.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Deputy Secretary Alana Ortiz of the Commerce Department"
+    },
+    {
+      "text": "Two of the remaining five fabrication plants in the federal semiconductor subsidy program may not reach production before 2030.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Deputy Secretary Alana Ortiz of the Commerce Department"
+    },
+    {
+      "text": "Industry analysts were split over the federal semiconductor subsidy program.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The federal semiconductor subsidies have already succeeded on their central goal.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Kenji Watanabe of Meridian Research"
+    },
+    {
+      "text": "Domestic advanced-node semiconductor capacity has tripled from 4 percent to 12 percent of world supply.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Kenji Watanabe of Meridian Research"
+    },
+    {
+      "text": "Most of the increase in domestic advanced-node semiconductor capacity comes from a single foreign-owned facility.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "critics"
+    },
+    {
+      "text": "If the single foreign-owned facility is excluded, domestic advanced-node semiconductor capacity has grown by less than two percentage points.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "critics"
+    },
+    {
+      "text": "Without a second funding round, the market-share gains of the federal semiconductor subsidy program will plateau by 2028.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "a separate analysis by the Peterson Institute"
+    }
+  ],
+  "theses": [
+    {
+      "text": "A Government Accountability Office report found that the federal semiconductor subsidy program has fallen short of its fabrication-plant targets, with only two of seven planned plants in production despite 38 billion dollars disbursed since 2023."
+    },
+    {
+      "text": "Whether the federal semiconductor subsidy program has succeeded is contested, with the Commerce Department and analyst Kenji Watanabe defending its progress while the Government Accountability Office report and critics emphasize its delays and limited real capacity gains."
+    },
+    {
+      "text": "The Government Accountability Office report attributes the federal semiconductor subsidy program's fabrication-plant delays primarily to a shortage of skilled technicians, estimating a shortfall of 67,000."
+    }
+  ]
+}

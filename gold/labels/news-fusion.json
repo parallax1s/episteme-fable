@@ -1,0 +1,111 @@
+{
+  "claims": [
+    {
+      "text": "Pacific Fusion is a rival of Helion.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Pacific Fusion's prototype reactor sustained a net-energy-producing plasma for 41 seconds.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Pacific Fusion"
+    },
+    {
+      "text": "If confirmed, Pacific Fusion's 41-second net-energy-producing plasma would be the longest confinement of its kind.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The plasma shot from Pacific Fusion's prototype reactor produced 1.9 times the energy injected into the fuel.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Pacific Fusion"
+    },
+    {
+      "text": "Pacific Fusion's reported figure of 1.9 times energy gain excludes the power consumed by the reactor's magnets and cooling systems.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Pacific Fusion"
+    },
+    {
+      "text": "Independent researchers urged caution about Pacific Fusion's net-energy claim.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Pacific Fusion's claimed energy gain would be a genuine milestone if the diagnostics hold up.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Dr. Ingrid Halvorsen of the Max Planck Institute"
+    },
+    {
+      "text": "Pacific Fusion has not yet released calorimetry data for its net-energy shot.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Dr. Ingrid Halvorsen of the Max Planck Institute"
+    },
+    {
+      "text": "Pacific Fusion has not yet submitted its net-energy-shot results for peer review.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Dr. Ingrid Halvorsen of the Max Planck Institute"
+    },
+    {
+      "text": "Previous private-sector fusion claims have shrunk substantially under scrutiny.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A 2024 fusion announcement by another startup was later revised downward by a factor of three.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Pacific Fusion plans to begin construction of a pilot power plant in 2027.",
+      "kind": "plan",
+      "stance": "reported",
+      "stance_source": "Pacific Fusion's chief executive"
+    },
+    {
+      "text": "Pacific Fusion plans to deliver electricity to the grid by 2032.",
+      "kind": "plan",
+      "stance": "reported",
+      "stance_source": "Pacific Fusion's chief executive"
+    },
+    {
+      "text": "Most academic roadmaps place grid-connected fusion no earlier than the 2040s.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If Pacific Fusion's timeline holds, it would compress the standard academic projection for grid-connected fusion by more than a decade.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The gap between Pacific Fusion's timeline and standard academic projections reflects marketing pressure from an oversubscribed funding round rather than any physics breakthrough.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "skeptics"
+    }
+  ],
+  "theses": [
+    {
+      "text": "Pacific Fusion has announced a record-setting net-energy fusion result — a 41-second plasma producing 1.9 times the injected energy — that would be a milestone if confirmed but whose reported gain excludes the reactor's magnet and cooling power."
+    },
+    {
+      "text": "Independent experts caution that Pacific Fusion's result is unverified, since the company has released no calorimetry data and sought no peer review, and previous private-sector fusion claims have shrunk substantially under scrutiny."
+    },
+    {
+      "text": "Pacific Fusion's plan to deliver grid electricity by 2032 runs more than a decade ahead of mainstream academic fusion roadmaps, a gap skeptics attribute to funding-round marketing pressure rather than a physics breakthrough."
+    }
+  ]
+}

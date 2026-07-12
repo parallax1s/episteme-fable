@@ -1,0 +1,99 @@
+{
+  "claims": [
+    {
+      "text": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The best performing sequence transduction models connect the encoder and decoder through an attention mechanism.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer is a new, simple network architecture based solely on attention mechanisms.",
+      "kind": "definition",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer dispenses with recurrence and convolutions entirely.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "On two machine translation tasks, the Transformer is superior in translation quality to existing sequence transduction models.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer is more parallelizable than recurrent and convolutional models.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer requires significantly less time to train than recurrent and convolutional models.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer achieves 28.4 BLEU on the WMT 2014 English-to-German translation task.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "On the WMT 2014 English-to-German translation task, the Transformer improves over the existing best results, including ensembles, by over 2 BLEU.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "On the WMT 2014 English-to-French translation task, the Transformer establishes a new single-model state-of-the-art BLEU score of 41.8.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer achieves its state-of-the-art WMT 2014 English-to-French translation result after training for 3.5 days on eight GPUs.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer's training cost for its WMT 2014 English-to-French translation result is a small fraction of the training costs of the best models from the literature.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer applies successfully to English constituency parsing with both large and limited training data.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The Transformer generalizes well to tasks other than machine translation.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "A network architecture based solely on attention mechanisms, dispensing with recurrence and convolutions, can outperform the best existing sequence transduction models on machine translation while being more parallelizable and faster to train."
+    },
+    {
+      "text": "The Transformer achieves state-of-the-art BLEU scores on the WMT 2014 English-to-German (28.4) and English-to-French (41.8) translation tasks at a small fraction of the training cost of the best prior models."
+    },
+    {
+      "text": "The Transformer generalizes beyond machine translation, applying successfully to English constituency parsing with both large and limited training data."
+    }
+  ]
+}

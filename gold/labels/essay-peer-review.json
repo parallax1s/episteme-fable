@@ -1,0 +1,126 @@
+{
+  "claims": [
+    {
+      "text": "Peer review at prestige journals is widely treated as the gold standard of scientific quality control.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The evidence for the effectiveness of peer review at prestige journals is surprisingly thin.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The agreement between reviewers assessing the same neuroscience manuscripts was barely higher than chance.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Rothwell and Martyn"
+    },
+    {
+      "text": "Peer review is a flawed process, full of easily identified defects.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Richard Smith, former editor of the BMJ"
+    },
+    {
+      "text": "There is little evidence that peer review works.",
+      "kind": "assertion",
+      "stance": "reported",
+      "stance_source": "Richard Smith, former editor of the BMJ"
+    },
+    {
+      "text": "Richard Smith is a former editor of the BMJ.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If reviewer agreement is near chance, then acceptance at a prestigious journal carries far less signal about quality than scientists assume.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The costs of the current peer review system are not merely epistemic.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Publication delays average around six months in many fields.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Reviewers donate millions of unpaid hours each year.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Journals capture profit margins that frequently exceed 30%.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Journals' profit margins are higher than those of most technology companies.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The economics of the current peer review system create an incentive to protect the prestige hierarchy rather than to improve error detection.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Abandoning pre-publication review would flood science with error.",
+      "kind": "assertion",
+      "stance": "refuted",
+      "stance_source": "Critics of reform"
+    },
+    {
+      "text": "Post-publication review already catches most consequential mistakes today.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Retractions are almost always triggered by readers, not by the original reviewers.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A system of rapid preprints combined with structured, public post-publication review would likely detect errors faster than the current peer review model.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Science should treat peer review as an empirical question rather than an article of faith.",
+      "kind": "goal",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "Peer review at prestige journals is not supported by strong evidence of effectiveness, so acceptance at a prestigious journal carries far less signal about quality than scientists assume."
+    },
+    {
+      "text": "The current prestige peer review system imposes substantial costs and creates incentives to protect the prestige hierarchy rather than to improve error detection."
+    },
+    {
+      "text": "A system of rapid preprints combined with structured, public post-publication review would likely detect errors faster than the current prestige peer review model."
+    },
+    {
+      "text": "Science should treat peer review as an empirical question rather than an article of faith."
+    }
+  ]
+}

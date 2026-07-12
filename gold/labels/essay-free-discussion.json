@@ -1,0 +1,126 @@
+{
+  "claims": [
+    {
+      "text": "Silencing an opinion harms more people than the speaker who is silenced.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If a suppressed opinion turns out to be true, everyone who was denied the chance to hear it has been robbed of the opportunity to exchange error for truth.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If a suppressed opinion is false, the loss caused by silencing it is subtler but still real.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "When an opposing error is silenced, a true view loses the clearer and livelier impression that comes from colliding with that error.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Those who silence discussion always assume their own infallibility.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The assumption of infallibility made by those who silence discussion is rarely stated openly, but it is implicit in the act of silencing.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "To forbid a question from being argued is to decide that question for others without allowing them to hear the other side.",
+      "kind": "definition",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Past ages have executed people for saying things that later ages regarded as obviously correct.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The people who executed others for their opinions were not villains but respectable men applying the received wisdom of their time.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Even a true belief degrades into prejudice if it is held without ever being tested.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A person who cannot state the strongest case against their own position does not really know that position.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Most people who hold correct opinions hold them in a half-dead way, without really knowing them.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "Most people who hold correct opinions can recite the conclusion but cannot reconstruct the argument for it.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "When their belief is seriously challenged, most people who hold correct opinions defend it badly or abandon it.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A rare devil's advocate is worth more to a community than a hundred conforming believers.",
+      "kind": "inference",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "If no dissenter exists in a community, a dissenter ought to be invented.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "The discipline of answering objections is the only thing that keeps a true belief alive.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    },
+    {
+      "text": "A society that succeeds in extinguishing all its heretics also extinguishes its ability to explain why its orthodoxy deserved to win.",
+      "kind": "assertion",
+      "stance": "author",
+      "stance_source": null
+    }
+  ],
+  "theses": [
+    {
+      "text": "Suppressing an opinion is always a mistake."
+    },
+    {
+      "text": "Silencing an opinion harms the whole community rather than only the speaker, whether the opinion turns out to be true or false."
+    },
+    {
+      "text": "A true belief that is never tested against dissent degrades into prejudice, so free discussion is necessary to keep true beliefs alive and rationally held."
+    },
+    {
+      "text": "To silence discussion is to assume one's own infallibility."
+    }
+  ]
+}
