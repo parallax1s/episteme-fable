@@ -1,0 +1,7 @@
+# Forum thread: Remote work and junior developers
+
+I keep seeing the claim that remote work is bad for juniors, and after running a 40-person engineering org through both regimes I want to push back with some actual numbers. Our junior cohort's time-to-first-production-commit was 24 days in the office era and 26 days remote — statistically indistinguishable in a sample this small. Meanwhile retention of juniors at the two-year mark went UP remotely, from 61% to 78%, mostly because we could hire people who live where housing is affordable.
+
+The standard counterargument is osmosis: juniors supposedly learn by overhearing senior conversations. Maybe. But nobody who makes this argument ever measures it, and my suspicion is that osmosis mostly benefited the loudest office cliques. What we lost in hallway learning we more than replaced with two structural changes: mandatory written design docs for every feature, and a rule that all debugging sessions happen on a recorded call anyone can join. A junior who watches ten recorded debugging sessions learns more than one who eavesdrops for a month.
+
+Where I'll concede ground: fully remote is probably worse for the bottom decile of self-starters, the people who need someone to notice they're stuck. If your hiring can't screen for autonomy, hybrid with two anchor days is likely the safer default. But the blanket claim that remote kills junior development is a management failure dressed up as a law of nature.

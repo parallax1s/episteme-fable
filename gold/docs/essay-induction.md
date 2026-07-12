@@ -1,0 +1,7 @@
+# The Circle at the Bottom of Science
+
+All reasoning about matters of fact rests on the relation of cause and effect, and our knowledge of that relation rests entirely on experience. Nothing in the taste or color of bread reveals that it will nourish; we expect it to because it always has. The expectation is habit, not insight.
+
+The trouble begins when we ask why past experience should bind the future. Every inductive inference presupposes that nature is uniform — that the future will resemble the past. But this uniformity principle cannot be demonstrated by logic, since its denial involves no contradiction: a world in which bread stops nourishing tomorrow is perfectly conceivable. Nor can the principle be established by experience, because any appeal to experience assumes the very uniformity in question. Arguing that induction has worked so far, and will therefore keep working, is induction defending itself in a circle.
+
+It does not follow that we should stop trusting induction; we could not stop if we tried. Custom compels the inference, and custom is a better guide to life than any argument. What follows is humbler: the confidence of science is practical rather than demonstrative. Every law of nature we assert carries an unstated premise that no argument can secure, and the proper response is not paralysis but a permanent discount on certainty. The skeptic's point is not that the sun might not rise tomorrow; it is that our reasons for expecting it are weaker in kind than we like to pretend.

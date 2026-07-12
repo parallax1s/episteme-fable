@@ -1,0 +1,7 @@
+# Forum thread: The real reason nuclear costs exploded
+
+Every time nuclear comes up, someone blames regulation for the cost explosion, and every time, the actual construction data gets ignored. So here it is. French reactors built in the 1970s came in around 1,000 dollars per kilowatt in today's money. The two reactors completed in Georgia in 2023-2024 cost roughly 15,000 dollars per kilowatt. That is not a regulatory premium; South Korea, with comparably strict regulation, built reactors through the 2010s at about 2,500 dollars per kilowatt.
+
+The Korean comparison points at the real variable: continuous build programs. Korea built the same design over and over with the same crews and the same supply chain. The US built nothing for thirty years, then attempted a first-of-a-kind design with a workforce that had never poured nuclear-grade concrete. Estimates attribute something like 60-70% of the US cost gap to lost workforce experience and supply-chain atrophy, not to safety rules.
+
+If that's right, the policy implication is uncomfortable for both sides. The pro-nuclear crowd's favorite fix — slashing the regulator — would recover maybe a third of the gap at best. The anti-nuclear crowd's position is worse: every pause they win makes the next reactor more expensive, which they then cite as proof nuclear is uneconomic. The only exit from the spiral is the boring one: pick one design, commit to a ten-unit program, and accept that the first two units will be expensive tuition. Should a country that cannot commit to ten units build any? Probably not.

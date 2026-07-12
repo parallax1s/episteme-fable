@@ -36,5 +36,10 @@ def normalize(text: str) -> str:
     t = _LIST_MARKER.sub("", t)
     t = _MULTISPACE.sub(" ", t)
     t = "\n".join(line.strip() for line in t.split("\n"))
+    # give headings their own blocks so soft-wrap unwrapping can't swallow them
+    t = re.sub(r"\n(#{1,6} [^\n]*)", r"\n\n\1\n\n", "\n" + t)
     t = _MANY_BLANKS.sub("\n\n", t)
+    # unwrap soft line breaks: a single newline inside a block is a space
+    t = re.sub(r"(?<!\n)\n(?!\n)", " ", t)
+    t = _MULTISPACE.sub(" ", t)
     return t.strip()

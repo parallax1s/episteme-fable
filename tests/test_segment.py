@@ -32,6 +32,13 @@ def test_tree_sections_and_paragraphs():
         assert tree.text[s.start:s.end].strip() == tree.text[s.start:s.end]
 
 
+def test_normalize_unwraps_soft_linebreaks():
+    raw = "# Title\nFirst line\nwraps here.\n\nNext para."
+    t = normalize(raw)
+    assert "First line wraps here." in t
+    assert t.startswith("# Title\n\n")
+
+
 def test_normalize_strips_markdown():
     raw = "Some **bold** and a [link](http://x.y) and `code`.\n\n```\nskip me\n```\n\nEnd."
     t = normalize(raw)
