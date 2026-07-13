@@ -197,7 +197,7 @@ def run_bench(gold_dir: Path, out_dir: Path, model: str,
         for k, v in stats.get("rejected_by_stage", {}).items():
             reject_stages[k] = reject_stages.get(k, 0) + v
         print(f"  {name}: P {prec:.2f} R {rec:.2f} F1 {f1:.2f} "
-              f"({n_p} pred / {n_g} gold, {judged} judge-matched)")
+              f"({n_p} pred / {n_g} gold, {judged} judge-matched)", flush=True)
 
     micro_p = totals["matched"] / totals["pred"] if totals["pred"] else 0.0
     micro_r = totals["matched"] / totals["gold"] if totals["gold"] else 0.0

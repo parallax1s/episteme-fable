@@ -61,11 +61,29 @@ Transport is the `claude` CLI (`claude -p`, prompt on stdin). Models:
 
 `gold/` holds 12 labeled documents across genres (real arXiv abstracts,
 argumentative essays, news-with-attribution, forum arguments, a blog post),
-labeled to `gold/GOLD.md` by an opus draft → adversarial-verify fleet.
-`epf bench` scores claim precision/recall/F1 (greedy token matching;
-`--judge` lets an LLM adjudicate paraphrase matches), compression
-(predicted/gold — the old engine ran ~4x), thesis recall, and the
-rejection funnel. Results land in `bench/runs/<ts>/report.md`.
+labeled to `gold/GOLD.md` by an opus draft → adversarial-verify fleet
+(216 claims, 40 theses). `epf bench` scores claim precision/recall/F1
+(greedy token matching; `--judge` lets an LLM adjudicate paraphrase
+matches), compression (predicted/gold — the old engine ran ~4x), thesis
+recall, and the rejection funnel. Results land in `bench/runs/<ts>/report.md`.
+
+Measured (haiku propose, sonnet assemble+judge, 2026-07-13, snapshot in
+`bench/BASELINE-v2.md`):
+
+| prompt | micro P | micro R | F1 | compression |
+|---|---|---|---|---|
+| propose_v1 | 0.987 | 0.704 | 0.822 | 0.71 |
+| propose_v2 | 0.951 | 0.801 | 0.869 | 0.84 |
+
+v2 added explicit decomposition of compound quantitative facts and coverage
+of refuted/reported rhetorical positions — +10pt recall for -3.6pt
+precision. Funnel at v2: 197 proposals, 12 rejected (deixis 4, support 6,
+alignment 1, fragment 1) — the validators catch real garbage at exactly the
+designed stages. Known gaps: dense numeric forum arguments still
+under-decompose (worst doc R 0.50); thesis recall (0.275) is understated
+because thesis matching is lexical-only — the judge pass does not yet
+adjudicate theses, and predicted theses synthesize more densely than gold
+(see side-by-side tables in the bench report).
 
 ## Provenance & trust
 
