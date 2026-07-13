@@ -15,8 +15,8 @@ from .context import Window
 from .providers import extract_json
 from .schemas import CLAIM_TYPES, KINDS, STANCES, coerce_enum, coerce_hedge
 
-PROMPT_VERSION = "propose_v1"
-_PROMPT_PATH = Path(__file__).resolve().parent.parent.parent / "prompts" / "propose_v1.md"
+PROMPT_VERSION = "propose_v2"
+_PROMPT_PATH = Path(__file__).resolve().parent.parent.parent / "prompts" / "propose_v2.md"
 
 REPAIR_SUFFIX = (
     "\n\nYour previous reply was not parseable JSON. Reply again with ONLY "
