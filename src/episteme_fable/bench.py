@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 
 from .pipeline import analyze
-from .providers import ClaudeCLIProvider, extract_json
+from .providers import ClaudeCLIProvider, extract_json, make_provider
 from .store import load_jsonl, write_json
 from .validate import content_tokens, _tok_match
 
@@ -107,7 +107,9 @@ def run_bench(gold_dir: Path, out_dir: Path, model: str,
 
     run_dir = out_dir / time.strftime("%Y%m%d-%H%M%S")
     cache_dir = out_dir / "cache"
-    provider = ClaudeCLIProvider(model=model)
+    # Engine under test follows EPF_PROVIDER; the judge stays on the claude
+    # CLI so measurements are comparable across engine providers.
+    provider = make_provider(model)
     judge = ClaudeCLIProvider(model=judge_model) if use_judge else None
 
     rows = []

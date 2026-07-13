@@ -50,6 +50,84 @@ class ClaudeCLIProvider:
         raise ProviderError(f"provider failed after retries: {last_err}")
 
 
+GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
+GITHUB_DEFAULT_MODEL = os.environ.get("EPF_GITHUB_MODEL", "openai/gpt-4.1-mini")
+_GH_MODEL_PREFIXES = ("openai/", "meta/", "mistral-ai/", "deepseek/",
+                      "microsoft/", "cohere/", "xai/", "ai21-labs/", "core42/")
+
+
+class GitHubModelsProvider:
+    """Keyless-in-CI transport: the GitHub Models inference API, authed by
+    GITHUB_TOKEN (a workflow's own token with `models: read`, or locally
+    `gh auth token`). OpenAI-compatible chat completions; honors Retry-After
+    on 429/5xx. Claude-style model ids passed by callers are ignored in
+    favor of the provider's own catalog model."""
+
+    def __init__(self, model: str = GITHUB_DEFAULT_MODEL, timeout: int = 180,
+                 retries: int = 3, token: str | None = None):
+        self.model = model
+        self.timeout = timeout
+        self.retries = retries
+        self.token = token or os.environ.get("GITHUB_TOKEN", "")
+        if not self.token:
+            raise ProviderError(
+                "GitHubModelsProvider needs GITHUB_TOKEN "
+                "(CI: the workflow token with models:read; local: gh auth token)")
+
+    def complete(self, prompt: str, model: str | None = None) -> str:
+        import urllib.error
+        import urllib.request
+
+        use_model = model if model and model.startswith(_GH_MODEL_PREFIXES) \
+            else self.model
+        body = json.dumps({
+            "model": use_model,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.2,
+        }).encode("utf-8")
+        req = urllib.request.Request(
+            GITHUB_MODELS_URL, data=body, method="POST",
+            headers={
+                "Authorization": f"Bearer {self.token}",
+                "Content-Type": "application/json",
+            })
+        last_err: Exception | None = None
+        for attempt in range(self.retries + 1):
+            try:
+                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                content = data["choices"][0]["message"]["content"]
+                if content and content.strip():
+                    return content.strip()
+                last_err = ProviderError("empty completion")
+            except urllib.error.HTTPError as e:
+                last_err = e
+                retry_after = e.headers.get("Retry-After") if e.headers else None
+                if e.code in (429, 500, 502, 503) and attempt < self.retries:
+                    try:
+                        wait = min(float(retry_after or 5), 90.0)
+                    except ValueError:
+                        wait = 5.0
+                    time.sleep(wait)
+                    continue
+                raise ProviderError(
+                    f"GitHub Models HTTP {e.code}: {e.read().decode()[:200]}") from e
+            except (OSError, KeyError, json.JSONDecodeError) as e:
+                last_err = e
+            time.sleep(2 * (attempt + 1))
+        raise ProviderError(f"GitHub Models failed after retries: {last_err}")
+
+
+def make_provider(model: str | None = None):
+    """Provider factory: EPF_PROVIDER=claude (default) | github."""
+    kind = os.environ.get("EPF_PROVIDER", "claude").lower()
+    if kind == "github":
+        if model and model.startswith(_GH_MODEL_PREFIXES):
+            return GitHubModelsProvider(model=model)
+        return GitHubModelsProvider()
+    return ClaudeCLIProvider(model=model) if model else ClaudeCLIProvider()
+
+
 class MockProvider:
     """Feed it responses in order; raises if the queue runs dry."""
 

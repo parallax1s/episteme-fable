@@ -70,10 +70,17 @@ recall, and the rejection funnel. Results land in `bench/runs/<ts>/report.md`.
 Measured (haiku propose, sonnet assemble+judge, 2026-07-13, snapshot in
 `bench/BASELINE-v2.md`):
 
-| prompt | micro P | micro R | F1 | compression |
-|---|---|---|---|---|
-| propose_v1 | 0.987 | 0.704 | 0.822 | 0.71 |
-| propose_v2 | 0.951 | 0.801 | 0.869 | 0.84 |
+| prompt | engine model | micro P | micro R | F1 | compression |
+|---|---|---|---|---|---|
+| propose_v1 | claude haiku 4.5 | 0.987 | 0.704 | 0.822 | 0.71 |
+| propose_v2 | claude haiku 4.5 | 0.951 | 0.801 | 0.869 | 0.84 |
+| propose_v2 | gpt-4.1-mini (GitHub Models, keyless) | 0.988 | 0.769 | 0.865 | 0.78 |
+
+Provider quality is a wash at v2 — the deterministic validators, not the
+model, are the precision floor. Transport via `EPF_PROVIDER=claude`
+(default, `claude` CLI) or `EPF_PROVIDER=github` (GitHub Models inference
+API, `GITHUB_TOKEN` — in CI the workflow's own token with `models: read`,
+locally `gh auth token`; `EPF_GITHUB_MODEL` overrides the catalog model).
 
 v2 added explicit decomposition of compound quantitative facts and coverage
 of refuted/reported rhetorical positions — +10pt recall for -3.6pt

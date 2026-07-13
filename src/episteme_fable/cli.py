@@ -8,7 +8,7 @@ from pathlib import Path
 
 from . import ENGINE_VERSION
 from .pipeline import analyze
-from .providers import ASSEMBLE_MODEL, DEFAULT_MODEL, ClaudeCLIProvider
+from .providers import ASSEMBLE_MODEL, DEFAULT_MODEL, make_provider
 from .report import render
 from .store import write_json, write_jsonl
 
@@ -22,7 +22,7 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
     doc_id = args.doc_id or src.stem
     title = args.title or src.stem.replace("-", " ").replace("_", " ")
 
-    provider = ClaudeCLIProvider(model=args.model)
+    provider = make_provider(args.model)
     t0 = time.time()
 
     def progress(msg: str) -> None:
