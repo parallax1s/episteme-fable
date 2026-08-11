@@ -104,3 +104,10 @@ Instance identity hashes `(doc, span offsets, kind)` — never the rewrite —
 so re-runs converge on the same ids while wording varies. Cross-document
 proposition identity is a *judged* relation; the engine only emits
 `same_as` candidates.
+
+## Canonical contracts
+
+This repo's `SCHEMA.md` governs the L1/L2/L3 rows (Aussagen/Punkte/Thesen);
+claimbase embeds these rows verbatim as its fable tier. The question layer
+above them is governed by the spine repo —
+`../foundational_frontier_question_engine_v0/spine/SCHEMA.md`.
