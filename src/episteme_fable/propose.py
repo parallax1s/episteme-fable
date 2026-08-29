@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from .context import Window
-from .providers import extract_json
+from .providers import QueuePending, extract_json
 from .schemas import CLAIM_TYPES, KINDS, STANCES, coerce_enum, coerce_hedge
 
 PROMPT_VERSION = "propose_v2"
@@ -104,10 +104,16 @@ def propose_window(provider, template: str, window: Window,
     """Returns (proposals, error). error is set when even the repair round
     produced no JSON — the window is then skipped, not fatal."""
     prompt = render_prompt(template, window, doc_title)
-    reply = provider.complete(prompt, model=model)
+    try:
+        reply = provider.complete(prompt, model=model)
+    except QueuePending as e:  # FileQueueProvider dump mode: enqueue, move on
+        return [], f"window {window.index}: {e}"
     data, err = extract_json(reply)
     if err is not None:
-        reply = provider.complete(prompt + REPAIR_SUFFIX, model=model)
+        try:
+            reply = provider.complete(prompt + REPAIR_SUFFIX, model=model)
+        except QueuePending as e:
+            return [], f"window {window.index}: {e}"
         data, err = extract_json(reply)
         if err is not None:
             return [], f"window {window.index}: {err}"

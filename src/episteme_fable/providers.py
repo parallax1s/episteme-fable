@@ -229,9 +229,76 @@ class CodexCLIProvider:
         raise ProviderError(f"codex provider failed after retries: {last_err}")
 
 
+class FileQueueProvider:
+    """No LLM at all: the *agents running this pipeline* are the model.
+
+    complete(prompt) hashes the prompt, writes it to
+    <EPF_QUEUE_DIR>/pending/<hash>.prompt.md, and then waits until
+    <EPF_QUEUE_DIR>/done/<hash>.reply.txt exists, returning its contents.
+    Sub-agents (human or LLM) drain pending/ by reading each prompt, producing
+    the reply the prompt asks for (a JSON array for propose windows), and
+    writing it to done/ under the same hash. Everything downstream — JSON
+    extraction, validators, identity, assembly — is unchanged, so agent
+    output is held to exactly the same contract as any API model's.
+
+    Two modes via EPF_QUEUE_WAIT (seconds; default 0):
+      0        -> "dump" mode: complete() raises QueuePending after writing
+                  the prompt. The engine treats it as a failed window, the
+                  doc is NOT cached, and a rerun after the queue is drained
+                  picks up the replies. Use this to enqueue thousands of
+                  prompts in one pass without blocking.
+      N > 0    -> "block" mode: complete() polls for the reply up to N s.
+    Identical prompts share one hash, so repair-round prompts (prompt +
+    REPAIR_SUFFIX) get their own file and never collide with the original."""
+
+    def __init__(self, queue_dir: str | None = None):
+        import hashlib
+        self._hashlib = hashlib
+        self.queue_dir = queue_dir or os.environ.get("EPF_QUEUE_DIR", "epf_queue")
+        self.wait = float(os.environ.get("EPF_QUEUE_WAIT", "0"))
+        self.poll = float(os.environ.get("EPF_QUEUE_POLL", "2"))
+        self.pending = os.path.join(self.queue_dir, "pending")
+        self.done = os.path.join(self.queue_dir, "done")
+        os.makedirs(self.pending, exist_ok=True)
+        os.makedirs(self.done, exist_ok=True)
+
+    def _key(self, prompt: str) -> str:
+        return self._hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:24]
+
+    def complete(self, prompt: str, model: str | None = None) -> str:
+        key = self._key(prompt)
+        reply_path = os.path.join(self.done, f"{key}.reply.txt")
+        if os.path.exists(reply_path):
+            text = open(reply_path, encoding="utf-8").read().strip()
+            if text:
+                return text
+        prompt_path = os.path.join(self.pending, f"{key}.prompt.md")
+        if not os.path.exists(prompt_path):
+            tmp = prompt_path + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as f:
+                f.write(prompt)
+            os.replace(tmp, prompt_path)
+        if self.wait <= 0:
+            raise QueuePending(f"prompt queued: {prompt_path}")
+        deadline = time.time() + self.wait
+        while time.time() < deadline:
+            if os.path.exists(reply_path):
+                text = open(reply_path, encoding="utf-8").read().strip()
+                if text:
+                    return text
+            time.sleep(self.poll)
+        raise ProviderError(f"queue reply not produced within {self.wait:.0f}s: {reply_path}")
+
+
+class QueuePending(ProviderError):
+    """Raised in dump mode after a prompt has been written to the queue."""
+
+
 def make_provider(model: str | None = None):
-    """Provider factory: EPF_PROVIDER=claude (default) | github | codex."""
+    """Provider factory: EPF_PROVIDER=claude (default) | github | codex | queue."""
     kind = os.environ.get("EPF_PROVIDER", "claude").lower()
+    if kind == "queue":
+        return FileQueueProvider()
     if kind == "github":
         if model and model.startswith(_GH_MODEL_PREFIXES):
             return GitHubModelsProvider(model=model)
