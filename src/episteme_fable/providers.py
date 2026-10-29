@@ -53,6 +53,59 @@ class ClaudeCLIProvider:
 
 
 ANTHROPIC_URL = os.environ.get("EPF_ANTHROPIC_URL", "https://api.anthropic.com/v1/messages")
+# USD per million tokens: (input, output). Cache reads bill at 0.1x input,
+# cache writes at 1.25x input. Unknown models fall back to the Opus row.
+ANTHROPIC_PRICES = {
+    "claude-haiku-5-5": (0.10, 0.50),
+    "claude-sonnet-5-5": (2.00, 10.00),
+    "claude-sonnet-5": (2.00, 10.00),
+    "claude-opus-5-5": (4.00, 20.00),
+    "claude-opus-5": (5.00, 25.00),
+    "claude-haiku-4-5": (1.00, 5.00),
+}
+ANTHROPIC_LEDGER = os.environ.get(
+    "EPF_ANTHROPIC_LEDGER", os.path.join(os.path.expanduser("~"), ".epf-anthropic-usage.jsonl"))
+
+
+def _price(model: str) -> tuple[float, float]:
+    for key, pr in ANTHROPIC_PRICES.items():
+        if model.startswith(key):
+            return pr
+    return ANTHROPIC_PRICES["claude-opus-5-5"]
+
+
+def usage_cost_usd(model: str, usage: dict[str, Any]) -> float:
+    pin, pout = _price(model)
+    return (usage.get("input_tokens", 0) * pin
+            + usage.get("cache_read_input_tokens", 0) * pin * 0.1
+            + usage.get("cache_creation_input_tokens", 0) * pin * 1.25
+            + usage.get("output_tokens", 0) * pout) / 1e6
+
+
+def ledger_total_usd(path: str = ANTHROPIC_LEDGER) -> float:
+    total = 0.0
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                try:
+                    total += float(json.loads(line).get("usd", 0))
+                except (ValueError, AttributeError):
+                    continue
+    except OSError:
+        pass
+    return total
+
+
+_LEDGER_LOCK = __import__("threading").Lock()
+
+
+def _ledger_append(path: str, model: str, usage: dict[str, Any], usd: float) -> None:
+    rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "model": model, "usd": round(usd, 6),
+           **{k: usage.get(k, 0) for k in ("input_tokens", "output_tokens",
+                                           "cache_read_input_tokens", "cache_creation_input_tokens")}}
+    with _LEDGER_LOCK:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec) + "\n")
 
 
 class AnthropicAPIProvider:
@@ -60,7 +113,14 @@ class AnthropicAPIProvider:
     Auth: ANTHROPIC_API_KEY (a key from the Console org linked to a Max/Team
     plan spends that plan's monthly API credits). Retries 429/529/5xx honoring
     Retry-After. EPF_ANTHROPIC_EFFORT (default low) bounds thinking spend on
-    the 5.5-generation models, where thinking is on by default."""
+    the 5.5-generation models, where thinking is on by default.
+
+    Spend control: every response's usage is appended to EPF_ANTHROPIC_LEDGER
+    (default ~/.epf-anthropic-usage.jsonl) with its USD cost; when
+    EPF_ANTHROPIC_BUDGET_USD is set, a call that would run with the ledger
+    total already at or above it raises ProviderError("budget exhausted")
+    BEFORE the request, so no process on this machine can overshoot the cap
+    by more than the in-flight calls."""
 
     def __init__(self, model: str = DEFAULT_MODEL, timeout: int = 300,
                  retries: int = 3, api_key: str | None = None,
@@ -73,6 +133,9 @@ class AnthropicAPIProvider:
         self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY", "")
         if not self.api_key:
             raise ProviderError("AnthropicAPIProvider needs ANTHROPIC_API_KEY")
+        self.ledger = os.environ.get("EPF_ANTHROPIC_LEDGER", ANTHROPIC_LEDGER)
+        budget = os.environ.get("EPF_ANTHROPIC_BUDGET_USD")
+        self.budget_usd = float(budget) if budget else None
 
     def _body(self, prompt: str, model: str | None) -> dict[str, Any]:
         return {
@@ -86,6 +149,13 @@ class AnthropicAPIProvider:
         import urllib.error
         import urllib.request
 
+        if self.budget_usd is not None:
+            spent = ledger_total_usd(self.ledger)
+            if spent >= self.budget_usd:
+                raise ProviderError(
+                    f"budget exhausted: ledger {spent:.2f} USD >= cap {self.budget_usd:.2f} USD "
+                    f"({self.ledger})")
+        use_model = model or self.model
         body = json.dumps(self._body(prompt, model)).encode("utf-8")
         req = urllib.request.Request(
             ANTHROPIC_URL, data=body, method="POST",
@@ -96,6 +166,9 @@ class AnthropicAPIProvider:
             try:
                 with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                     data = json.loads(resp.read().decode("utf-8"))
+                usage = data.get("usage") or {}
+                if usage:
+                    _ledger_append(self.ledger, use_model, usage, usage_cost_usd(use_model, usage))
                 if data.get("stop_reason") == "refusal":
                     raise ProviderError(f"refusal: {data.get('stop_details')}")
                 text = "".join(b.get("text", "") for b in data.get("content", [])

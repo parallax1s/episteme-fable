@@ -98,3 +98,34 @@ def test_anthropic_provider_parses_text_blocks_and_retries_429(monkeypatch):
     assert p.complete("hi", model="claude-sonnet-5-5") == "[]"
     assert len(calls) == 2 and calls[0]["model"] == "claude-sonnet-5-5"
     assert calls[0]["output_config"] == {"effort": "low"} and calls[0]["messages"][0]["content"] == "hi"
+
+
+def test_anthropic_provider_ledger_and_budget_cap(monkeypatch, tmp_path):
+    import io
+    import json as _json
+    import urllib.request
+    from episteme_fable import providers
+    from episteme_fable.providers import AnthropicAPIProvider, ledger_total_usd, usage_cost_usd
+
+    ledger = tmp_path / "usage.jsonl"
+    monkeypatch.setenv("EPF_ANTHROPIC_LEDGER", str(ledger))
+    monkeypatch.setenv("EPF_ANTHROPIC_BUDGET_USD", "0.02")
+
+    class _Resp(io.BytesIO):
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+
+    def fake_urlopen(req, timeout=None):
+        return _Resp(_json.dumps({"stop_reason": "end_turn",
+                                  "usage": {"input_tokens": 1000, "output_tokens": 1000},
+                                  "content": [{"type": "text", "text": "ok"}]}).encode())
+
+    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+    p = AnthropicAPIProvider(api_key="k", model="claude-sonnet-5-5")
+    assert usage_cost_usd("claude-sonnet-5-5", {"input_tokens": 1000, "output_tokens": 1000}) == 0.012
+    assert p.complete("a") == "ok"          # ledger 0.012 < cap
+    assert p.complete("b") == "ok"          # ledger 0.024 after this call
+    assert abs(ledger_total_usd(str(ledger)) - 0.024) < 1e-9
+    with pytest.raises(ProviderError, match="budget exhausted"):
+        p.complete("c")                     # refused before any request
+    assert len(ledger.read_text().splitlines()) == 2
