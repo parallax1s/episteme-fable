@@ -11,7 +11,7 @@ from typing import Any
 
 from . import ENGINE_VERSION
 from .assemble import synthesize_points, synthesize_theses
-from .context import build_windows
+from .context import WINDOW_CHAR_CAP, build_windows
 from .identify import dedupe_and_link, instance_id
 from .ingest import normalize
 from .propose import PROMPT_VERSION, RawProposal, load_prompt_template, propose_window
@@ -83,17 +83,22 @@ def dispose(p: RawProposal, doc_id: str, tree: DocTree,
 
 def analyze(raw_text: str, doc_id: str, title: str, provider,
             model: str | None = None, assemble_model: str | None = None,
-            do_assemble: bool = True, on_progress=None) -> Artifact:
+            do_assemble: bool = True, on_progress=None,
+            window_indices: set[int] | None = None,
+            window_cap: int = WINDOW_CHAR_CAP) -> Artifact:
     text = normalize(raw_text)
     tree = segment(text, title=title)
-    windows = build_windows(tree)
+    windows = build_windows(tree, cap=window_cap)
+    selected_windows = windows if window_indices is None else [
+        window for window in windows if window.index in window_indices
+    ]
     template = load_prompt_template()
 
     art = Artifact(doc_id=doc_id, title=title, tree=tree)
     window_errors: list[str] = []
     n_proposals = 0
 
-    for w in windows:
+    for w in selected_windows:
         if on_progress:
             on_progress(f"window {w.index + 1}/{len(windows)}")
         proposals, err = propose_window(provider, template, w, title, model=model)
@@ -125,6 +130,8 @@ def analyze(raw_text: str, doc_id: str, title: str, provider,
         reject_reasons[r.stage] = reject_reasons.get(r.stage, 0) + 1
     art.stats = {
         "windows": len(windows),
+        "windows_processed": len(selected_windows),
+        "window_indices": [window.index for window in selected_windows],
         "window_errors": window_errors,
         "proposals": n_proposals,
         "accepted": len(art.claims),

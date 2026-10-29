@@ -1,7 +1,7 @@
 import pytest
 
-from episteme_fable.providers import (GitHubModelsProvider, MockProvider,
-                                      ProviderError, extract_json,
+from episteme_fable.providers import (CodexCLIProvider, GitHubModelsProvider,
+                                      MockProvider, ProviderError, extract_json,
                                       make_provider)
 
 
@@ -33,6 +33,13 @@ def test_github_ignores_claude_model_override(monkeypatch):
     # complete() would use self.model for a claude-style id; we only test
     # the resolution logic via the private prefix rule indirectly here.
     assert p.model == "openai/gpt-4.1-mini"
+
+
+def test_codex_provider_injects_requested_service_tier(monkeypatch):
+    monkeypatch.setenv("EPF_CODEX_SERVICE_TIER", "priority")
+    provider = CodexCLIProvider(model="gpt-5.6-luna")
+    command = provider._build_command("gpt-5.6-luna")
+    assert ["-c", "service_tier=priority"] == command[command.index("service_tier=priority") - 1:command.index("service_tier=priority") + 1]
 
 
 def test_extract_json_prefers_first_container():

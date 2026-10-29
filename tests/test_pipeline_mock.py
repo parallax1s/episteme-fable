@@ -113,3 +113,15 @@ def test_pipeline_survives_garbage_provider():
                   title="Junk", provider=provider, do_assemble=False)
     assert art.claims == []
     assert art.stats["window_errors"]
+
+
+def test_analyze_can_process_one_selected_window():
+    doc = "First paragraph has one fact.\n\nSecond paragraph has another fact."
+    provider = MockProvider(["[]"])
+
+    art = analyze(doc, doc_id="selected", title="Selected", provider=provider,
+                  do_assemble=False, window_indices={1}, window_cap=40)
+
+    assert len(provider.prompts) == 1
+    assert art.stats["windows"] == 2
+    assert art.stats["windows_processed"] == 1

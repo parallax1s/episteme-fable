@@ -47,23 +47,60 @@ def _glossary_from(text: str, seen: dict[str, int]) -> None:
         seen[cleaned] = seen.get(cleaned, 0) + 1
 
 
+def _paragraph_pieces(tree: DocTree, paragraph, cap: int) -> list[tuple[int, int, str]]:
+    """Split a paragraph into source-aligned pieces no longer than ``cap``.
+
+    Prefer sentence ends. A single sentence longer than the cap falls back to
+    whitespace (and finally an exact character boundary), so the cap remains
+    hard even for unusually long unbroken paragraphs.
+    """
+    section = tree.section_path(paragraph.id)
+    sentence_ends = [n.end for n in tree.sentences() if n.parent == paragraph.id]
+    pieces: list[tuple[int, int, str]] = []
+    start = paragraph.start
+    while start < paragraph.end:
+        while start < paragraph.end and tree.text[start].isspace():
+            start += 1
+        if start >= paragraph.end:
+            break
+        limit = min(start + cap, paragraph.end)
+        end = limit
+        if limit < paragraph.end:
+            candidates = [e for e in sentence_ends if start < e <= limit]
+            if candidates:
+                end = max(candidates)
+            else:
+                floor = min(limit, start + max(1, cap // 2))
+                whitespace = tree.text.rfind(" ", floor, limit + 1)
+                if whitespace > start:
+                    end = whitespace
+        while end > start and tree.text[end - 1].isspace():
+            end -= 1
+        if end <= start:
+            end = min(start + cap, paragraph.end)
+        pieces.append((start, end, section))
+        start = end
+    return pieces
+
+
 def build_windows(tree: DocTree, cap: int = WINDOW_CHAR_CAP) -> list[Window]:
+    if cap <= 0:
+        raise ValueError("window cap must be positive")
     windows: list[Window] = []
     glossary_counts: dict[str, int] = {}
     prev_tail = ""
 
-    paragraphs = tree.paragraphs()
+    pieces = [piece for paragraph in tree.paragraphs()
+              for piece in _paragraph_pieces(tree, paragraph, cap)]
     i = 0
     w_index = 0
-    while i < len(paragraphs):
-        sec = tree.section_path(paragraphs[i].id)
-        start = paragraphs[i].start
-        end = paragraphs[i].end
+    while i < len(pieces):
+        start, end, sec = pieces[i]
         j = i + 1
-        while (j < len(paragraphs)
-               and tree.section_path(paragraphs[j].id) == sec
-               and paragraphs[j].end - start <= cap):
-            end = paragraphs[j].end
+        while (j < len(pieces)
+               and pieces[j][2] == sec
+               and pieces[j][1] - start <= cap):
+            end = pieces[j][1]
             j += 1
 
         text = tree.text[start:end]

@@ -131,11 +131,14 @@ class CodexCLIProvider:
     ignored so each call carries only our prompt; --ephemeral keeps the
     session store clean; sandbox read-only. Claude model ids passed by
     callers are ignored in favor of EPF_CODEX_MODEL (default gpt-5.6-luna);
-    EPF_REASONING_EFFORT (default low) — higher efforts cost ~10x latency."""
+    EPF_REASONING_EFFORT (default low) — higher efforts cost ~10x latency;
+    EPF_CODEX_SERVICE_TIER optionally selects a model service tier (for
+    example, ``priority`` for Luna Fast mode)."""
 
     def __init__(self, model: str | None = None, timeout: int = 420, retries: int = 2):
         self.model = model or CODEX_DEFAULT_MODEL
         self.effort = os.environ.get("EPF_REASONING_EFFORT", "low")
+        self.service_tier = os.environ.get("EPF_CODEX_SERVICE_TIER")
         self.timeout, self.retries = timeout, retries
         self.workdir = os.path.join(
             os.environ.get("EPF_CODEX_WORKDIR", os.path.join(os.path.expanduser("~"), ".epf-codex-cwd")))
@@ -146,6 +149,15 @@ class CodexCLIProvider:
             return model
         return self.model
 
+    def _build_command(self, model: str | None) -> list[str]:
+        cmd = ["codex", "exec", "--json", "-m", self.resolve(model),
+               "-c", f"model_reasoning_effort={self.effort}"]
+        if self.service_tier:
+            cmd.extend(["-c", f"service_tier={self.service_tier}"])
+        cmd.extend(["-s", "read-only", "--skip-git-repo-check", "--ephemeral",
+                    "--ignore-user-config", "--ignore-rules", "-C", self.workdir, "-"])
+        return cmd
+
     def complete(self, prompt: str, model: str | None = None) -> str:
         import selectors
         import signal
@@ -154,10 +166,7 @@ class CodexCLIProvider:
         inactivity = float(os.environ.get("EPF_CODEX_INACTIVITY", "120"))
         last_err: Exception | None = None
         for attempt in range(self.retries + 1):
-            cmd = ["codex", "exec", "--json", "-m", self.resolve(model),
-                   "-c", f"model_reasoning_effort={self.effort}",
-                   "-s", "read-only", "--skip-git-repo-check", "--ephemeral",
-                   "--ignore-user-config", "--ignore-rules", "-C", self.workdir, "-"]
+            cmd = self._build_command(model)
             proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                     stderr=subprocess.DEVNULL, env=env, cwd=self.workdir,
                                     start_new_session=True)
