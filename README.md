@@ -88,9 +88,13 @@ precision. Funnel at v2: 197 proposals, 12 rejected (deixis 4, support 6,
 alignment 1, fragment 1) — the validators catch real garbage at exactly the
 designed stages. Known gaps: dense numeric forum arguments still
 under-decompose (worst doc R 0.50); thesis recall (0.275) is understated
-because thesis matching is lexical-only — the judge pass does not yet
-adjudicate theses, and predicted theses synthesize more densely than gold
-(see side-by-side tables in the bench report).
+because thesis matching was lexical-only while predicted theses synthesize
+more densely than gold. Since 2026-10-29 `--judge` adjudicates theses too:
+on the cached v2 outputs (gpt-4.1-mini propose) thesis recall is 0.40
+(16/40 gold theses, 6 of them judge-matched) — the honest number is still
+low, mostly because the engine emits ~3 theses per doc where gold has 3–4
+and bundles contentions the gold keeps separate (side-by-side tables in
+`bench/runs/<ts>/report.md`).
 
 ## Provenance & trust
 
