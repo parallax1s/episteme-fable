@@ -2,6 +2,8 @@
 
 - ClaudeCLIProvider: shells out to `claude -p` (prompt on stdin, so argv
   length never matters). Retries with backoff on nonzero exit.
+- AnthropicAPIProvider: direct Messages API over urllib (ANTHROPIC_API_KEY);
+  no CLI dependency, honors Retry-After. EPF_PROVIDER=anthropic.
 - MockProvider: a queue of canned responses, for tests and offline runs.
 
 extract_json() is the total JSON reader: it never raises, returns
@@ -16,8 +18,8 @@ import subprocess
 import time
 from typing import Any
 
-DEFAULT_MODEL = os.environ.get("EPF_MODEL", "claude-haiku-4-5-20251001")
-ASSEMBLE_MODEL = os.environ.get("EPF_MODEL_ASSEMBLE", "claude-sonnet-5")
+DEFAULT_MODEL = os.environ.get("EPF_MODEL", "claude-haiku-5-5")
+ASSEMBLE_MODEL = os.environ.get("EPF_MODEL_ASSEMBLE", "claude-sonnet-5-5")
 
 
 class ProviderError(RuntimeError):
@@ -48,6 +50,75 @@ class ClaudeCLIProvider:
                 last_err = e
             time.sleep(2 * (attempt + 1))
         raise ProviderError(f"provider failed after retries: {last_err}")
+
+
+ANTHROPIC_URL = os.environ.get("EPF_ANTHROPIC_URL", "https://api.anthropic.com/v1/messages")
+
+
+class AnthropicAPIProvider:
+    """Direct Claude Messages API transport (stdlib urllib, no SDK, no CLI).
+    Auth: ANTHROPIC_API_KEY (a key from the Console org linked to a Max/Team
+    plan spends that plan's monthly API credits). Retries 429/529/5xx honoring
+    Retry-After. EPF_ANTHROPIC_EFFORT (default low) bounds thinking spend on
+    the 5.5-generation models, where thinking is on by default."""
+
+    def __init__(self, model: str = DEFAULT_MODEL, timeout: int = 300,
+                 retries: int = 3, api_key: str | None = None,
+                 max_tokens: int = 16000):
+        self.model = model
+        self.timeout = timeout
+        self.retries = retries
+        self.max_tokens = max_tokens
+        self.effort = os.environ.get("EPF_ANTHROPIC_EFFORT", "low")
+        self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY", "")
+        if not self.api_key:
+            raise ProviderError("AnthropicAPIProvider needs ANTHROPIC_API_KEY")
+
+    def _body(self, prompt: str, model: str | None) -> dict[str, Any]:
+        return {
+            "model": model or self.model,
+            "max_tokens": self.max_tokens,
+            "output_config": {"effort": self.effort},
+            "messages": [{"role": "user", "content": prompt}],
+        }
+
+    def complete(self, prompt: str, model: str | None = None) -> str:
+        import urllib.error
+        import urllib.request
+
+        body = json.dumps(self._body(prompt, model)).encode("utf-8")
+        req = urllib.request.Request(
+            ANTHROPIC_URL, data=body, method="POST",
+            headers={"x-api-key": self.api_key, "anthropic-version": "2023-06-01",
+                     "content-type": "application/json"})
+        last_err: Exception | None = None
+        for attempt in range(self.retries + 1):
+            try:
+                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                if data.get("stop_reason") == "refusal":
+                    raise ProviderError(f"refusal: {data.get('stop_details')}")
+                text = "".join(b.get("text", "") for b in data.get("content", [])
+                               if b.get("type") == "text")
+                if text.strip():
+                    return text.strip()
+                last_err = ProviderError(f"empty completion (stop_reason={data.get('stop_reason')})")
+            except urllib.error.HTTPError as e:
+                last_err = e
+                retry_after = e.headers.get("Retry-After") if e.headers else None
+                if e.code in (408, 409, 429, 500, 502, 503, 529) and attempt < self.retries:
+                    try:
+                        wait = min(float(retry_after or 5), 90.0)
+                    except ValueError:
+                        wait = 5.0
+                    time.sleep(wait)
+                    continue
+                raise ProviderError(
+                    f"Anthropic API HTTP {e.code}: {e.read().decode()[:200]}") from e
+            except (OSError, KeyError, json.JSONDecodeError) as e:
+                last_err = e
+            time.sleep(2 * (attempt + 1))
+        raise ProviderError(f"Anthropic API failed after retries: {last_err}")
 
 
 GITHUB_MODELS_URL = "https://models.github.ai/inference/chat/completions"
@@ -304,8 +375,10 @@ class QueuePending(ProviderError):
 
 
 def make_provider(model: str | None = None):
-    """Provider factory: EPF_PROVIDER=claude (default) | github | codex | queue."""
+    """Provider factory: EPF_PROVIDER=claude (default) | anthropic | github | codex | queue."""
     kind = os.environ.get("EPF_PROVIDER", "claude").lower()
+    if kind == "anthropic":
+        return AnthropicAPIProvider(model=model) if model else AnthropicAPIProvider()
     if kind == "queue":
         return FileQueueProvider()
     if kind == "github":

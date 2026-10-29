@@ -54,3 +54,47 @@ def test_mock_provider_exhaustion():
     assert p.complete("x") == "one"
     with pytest.raises(ProviderError):
         p.complete("y")
+
+
+def test_factory_anthropic(monkeypatch):
+    monkeypatch.setenv("EPF_PROVIDER", "anthropic")
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "k")
+    from episteme_fable.providers import AnthropicAPIProvider
+    p = make_provider("claude-sonnet-5-5")
+    assert isinstance(p, AnthropicAPIProvider) and p.model == "claude-sonnet-5-5"
+
+
+def test_anthropic_provider_requires_key(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    from episteme_fable.providers import AnthropicAPIProvider
+    with pytest.raises(ProviderError):
+        AnthropicAPIProvider()
+
+
+def test_anthropic_provider_parses_text_blocks_and_retries_429(monkeypatch):
+    import io
+    import json as _json
+    import urllib.error
+    import urllib.request
+    from episteme_fable import providers
+    from episteme_fable.providers import AnthropicAPIProvider
+
+    calls = []
+
+    class _Resp(io.BytesIO):
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+
+    def fake_urlopen(req, timeout=None):
+        calls.append(_json.loads(req.data))
+        if len(calls) == 1:
+            raise urllib.error.HTTPError(req.full_url, 429, "rate", {"Retry-After": "0"}, io.BytesIO(b""))
+        return _Resp(_json.dumps({"stop_reason": "end_turn", "content": [
+            {"type": "thinking", "thinking": ""}, {"type": "text", "text": "[]"}]}).encode())
+
+    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(providers.time, "sleep", lambda *_: None)
+    p = AnthropicAPIProvider(api_key="k", model="claude-haiku-5-5")
+    assert p.complete("hi", model="claude-sonnet-5-5") == "[]"
+    assert len(calls) == 2 and calls[0]["model"] == "claude-sonnet-5-5"
+    assert calls[0]["output_config"] == {"effort": "low"} and calls[0]["messages"][0]["content"] == "hi"

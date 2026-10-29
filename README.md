@@ -53,9 +53,14 @@ epf report out/peer-review
 epf bench --judge                # score against gold/ (see below)
 ```
 
-Transport is the `claude` CLI (`claude -p`, prompt on stdin). Models:
-`--model` / `EPF_MODEL` for PROPOSE (default haiku),
-`--assemble-model` / `EPF_MODEL_ASSEMBLE` for ASSEMBLE (default sonnet).
+Transport is the `claude` CLI (`claude -p`, prompt on stdin) by default;
+`EPF_PROVIDER=anthropic` calls the Messages API directly over urllib with
+`ANTHROPIC_API_KEY` (no CLI; a key from the Console org linked to a Max/Team
+plan spends that plan's monthly API credits; `EPF_ANTHROPIC_EFFORT`, default
+low). Models: `--model` / `EPF_MODEL` for PROPOSE (default `claude-haiku-5-5`),
+`--assemble-model` / `EPF_MODEL_ASSEMBLE` for ASSEMBLE (default
+`claude-sonnet-5-5`); defaults moved to the 5.5 generation on 2026-10-29,
+the v2 baseline table below was measured on haiku 4.5.
 
 ## Benchmark
 
